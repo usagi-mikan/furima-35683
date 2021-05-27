@@ -28,7 +28,7 @@
 | concept_status_id   | integer    | null: false                    |
 | delivery_charge_id  | integer    | null: false                    |
 | delivery_area_id    | integer    | null: false                    |
-| delivery_days_id    | integer    | null: false                    |
+| delivery_day_id     | integer    | null: false                    |
 | price               | integer    | null: false                    |
 | user                | references | null: false, foreign_key: true |
 
@@ -48,9 +48,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping-address
+- has_one :shipping_address
 
-## shipping-addresses テーブル
+## shipping_addresses テーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
@@ -64,4 +64,4 @@
 
 ### Association
 
-- has_one :purchase
+- belongs_to :purchase
