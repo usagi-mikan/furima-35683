@@ -106,5 +106,20 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Birthday can't be blank")
     end
 
+    it "emailに@が含まれていないと登録できない" do
+      @user.email = 'aaaaa'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Email is invalid")
+    end
+
+    it "passwordが半角数字だけでは登録できない" do
+      @user.password = '111111'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password には英字と数字の両方を含めて設定してください")
+    end
+
+
+
+
   end
 end
