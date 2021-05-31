@@ -18,12 +18,12 @@ class Item < ApplicationRecord
   end
 
   #ジャンルの選択が「--」の時は保存できないようにする
-  with_options umericality: { other_than: 1 }  do
+  with_options numericality: { other_than: 1 }  do
     validates :concept_category_id
     validates :concept_status_id
     validates :delivery_area_id
     validates :delivery_charge_id
-    validates :delivery_day
+    validates :delivery_day_id
   end
 
 end
