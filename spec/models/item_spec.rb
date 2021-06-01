@@ -32,31 +32,31 @@ RSpec.describe Item, type: :model do
       end
 
       it "concept_category_idが「--」だと登録できない" do
-        @item.concept_category_id = '1'
+        @item.concept_category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Concept category must be other than 1")
       end
 
       it "concept_status_idが「--」だと登録できない" do
-        @item.concept_status_id = '1'
+        @item.concept_status_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Concept status must be other than 1")
       end
 
       it "delivery_charge_idが「--」だと登録できない" do
-        @item.delivery_charge_id = '1'
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
       end
 
       it "delivery_area_idが「--」だと登録できない" do
-        @item.delivery_area_id = '1'
+        @item.delivery_area_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery area must be other than 1")
       end
 
       it "delivery_day_idが「--」だと登録できない" do
-        @item.delivery_day_id = '1'
+        @item.delivery_day_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
       end
@@ -79,7 +79,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
       end
 
+      it 'userが紐付いていないと保存できないこと' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include('User must exist')
+      end
+
     end
   end
 end
-00
