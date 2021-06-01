@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   belongs_to :delivery_day
 
   #priceは¥300から¥9,999,999の範囲のみ許可する
-  validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+  validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
 
   #空の投稿を保存できないようにする
   with_options presence: true do
