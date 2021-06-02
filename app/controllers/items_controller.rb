@@ -17,6 +17,11 @@ class ItemsController < ApplicationController
     else
       render :new
   end
+
+  def show
+    @item = Item.all
+  end
+
 end
 
   private
