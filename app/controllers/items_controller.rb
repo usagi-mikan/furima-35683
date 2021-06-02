@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @item = Item.all
+    @items = Item.all.includes(:user).order("created_at DESC")
   end
 
   def new
@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to items_index_path(@item)
+      redirect_to items_path(@item)
     else
       render :new
   end
