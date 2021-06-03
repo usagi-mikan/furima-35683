@@ -16,13 +16,16 @@ class ItemsController < ApplicationController
       redirect_to root_path(@item)
     else
       render :new
+    end
   end
 
   def show
     @item = Item.find(params[:id])
   end
 
-end
+  def edit
+    @item = Item.find(params[:id])
+  end
 
   private
   def item_params
