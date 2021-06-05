@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   def index
+    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -11,4 +12,10 @@ class OrdersController < ApplicationController
     #   render :new
     # end
   end
+
+  private
+  def item_params
+    params.require(:item).permit(:image, :title, :delivery_charge_id, :price).merge(user_id: current_user.id)
+  end
+
 end
