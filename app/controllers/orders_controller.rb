@@ -4,13 +4,13 @@ class OrdersController < ApplicationController
   end
 
   def create
-    # @donation_address = DonationAddress.new(donation_params)
-    # if @donation_address.valid?
-    #   @donation_address.save
-    #   redirect_to root_path
-    # else
-    #   render :new
-    # end
+    @order =PurchaseShippingAddress.new(item_params)
+    if @order.valid?
+      @order.save
+      redirect_to root_path
+    else
+      render :item_orders_path
+    end
   end
 
   private
