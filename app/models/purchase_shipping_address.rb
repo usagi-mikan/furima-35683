@@ -12,11 +12,11 @@ class PurchaseShippingAddress
     validates :telephone
     validates :token
     #postal_codeは半角数字入力のみと「3桁-4桁」のみ許可する
-    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)"}
+    validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)"},allow_blank: true
     #telephoneは半角数字入力のみ許可する
-    validates :telephone, numericality:{ with: /\A[0-9]+\z/, message: 'should be half-width numbers' }
+    validates :telephone, numericality:{ with: /\A[0-9]+\z/, message: 'should be half-width numbers' },allow_blank: true
     #telephoneは10桁か11桁の半角数字入力のみ許可する
-    validates :telephone, format:{ with: /\A\d{10,11}\z/, message: 'number is too short' }
+    validates :telephone, format:{ with: /\A\d{10,11}\z/, message: 'number is too short' },allow_blank: true
   end
 
   #ジャンルの選択が「--」の時は保存できないようにする
