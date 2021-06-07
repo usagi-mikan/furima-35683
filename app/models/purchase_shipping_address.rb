@@ -1,6 +1,6 @@
 class PurchaseShippingAddress
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone, :price, :purchase_id, :user_id, :item_id
+  attr_accessor :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone, :price, :purchase_id, :user_id, :item_id, :token
 
   #空の投稿を保存できないようにする
   with_options presence: true do
@@ -10,6 +10,7 @@ class PurchaseShippingAddress
     validates :city
     validates :house_number
     validates :telephone
+    validates :token
     #postal_codeは半角数字入力のみと「3桁-4桁」のみ許可する
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Enter it as follows (e.g. 123-4567)"}
     #telephoneは半角数字入力のみ許可する

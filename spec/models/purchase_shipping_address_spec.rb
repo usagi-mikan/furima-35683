@@ -10,7 +10,7 @@ RSpec.describe PurchaseShippingAddress, type: :model do
 
   describe "購入情報登録" do
     context '購入登録できるとき' do
-      it 'postal_code,prefecture_id,city,house_number,building_name,telephone,トークンが存在すれば登録できること' do
+      it 'postal_code,prefecture_id,city,house_number,building_name,telephone,tokenが存在すれば登録できること' do
         expect(@order).to be_valid
       end
 
@@ -88,8 +88,11 @@ RSpec.describe PurchaseShippingAddress, type: :model do
         expect(@order.errors.full_messages).to include("Telephone should be half-width numbers")
       end
 
-      # it 'クレジットカードのトークンが空だと登録できない' do
-      # end
+      it 'tokenが空だと登録できない' do
+        @order.token = nil
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Token can't be blank")
+      end
 
       it 'userが紐付いていないと保存できないこと' do
         @order.user_id = nil
