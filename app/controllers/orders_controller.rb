@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
-
+  before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :create]
+  before_action :move_to_index, only: [:index]
+
 
   def index
     @order = PurchaseShippingAddress.new
@@ -34,6 +36,15 @@ class OrdersController < ApplicationController
       card: order_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def move_to_index
+    if current_user.id == @item.user_id
+      redirect_to root_path(@item)
+    end
+    if @item.purchase.present?
+      redirect_to root_path(@item)
+    end
   end
 
 end
