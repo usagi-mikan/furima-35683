@@ -1,5 +1,6 @@
 class PurchaseShippingAddress
   include ActiveModel::Model
+  attr_accessor :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone, :price, :purchase_id, :user_id, :item_id, :token
 
   #空の投稿を保存できないようにする
   with_options presence: true do
